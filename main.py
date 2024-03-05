@@ -34,12 +34,12 @@ async def home():
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: #f4f4f4;
-                color: #333;
+                background-color: #010c17;
+                color: #e3effa;
             }
             header {
-                background-color: #007bff;
-                color: #fff;
+                background-color: #2a017a;
+                color: #ffffff;
                 padding: 20px;
                 text-align: center;
             }
@@ -74,15 +74,10 @@ async def home():
                 <a href="https://github.com/duvanroarq/PI1_Steam-ML-Operations">Repositorio GitHub</a></p>
                 <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs , o por el contrario
                 dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">DOCS</a> </p>
-            </div>
-            <div class="fin">
-                <h2>Bienvenido a nuestra plataforma;</h2>
-                <p>¡Hola! Esta API proporciona un sistema de consulta de aplicaciones(especialmente videojuegos)
-                que se encuentran en la plataforma STEAM. Puedes consultar por idUsuario, genero y mucho más.
-                Puedes consultar toda la documentación oficial en el siguiente enlace:
-                <a href="https://github.com/duvanroarq/PI1_Steam-ML-Operations">Repositorio GitHub</a></p>
-                <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs , o por el contrario
-                dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">DOCS</a> </p>
+                
+                <p>Con el fin de hacer disponible las funcionalidades de la API desde cualquier dispositivo,
+                se creó una API usando un servidor de Railway.Esta plataforma permite crear APIs disrectamente 
+                desde el repositorio de GitHub y se sincroniza al instante cada vez que existe un nuevo commit en el repositorio.</p>
             </div>
         </div>
     </body>
@@ -92,8 +87,19 @@ async def home():
 
 
 # Función developer
-@app.get("/developer/{dev}")
+@app.get("/developer/{dev}", name = "Developer")
 def developer(dev:str):
+    """
+    Esta función devuelve información sobre un desarrollador específico.
+
+    Parámetros:
+    - dev (str): El nombre del desarrollador.
+
+    Return:
+    - list: Una lista de diccionarios que contienen información sobre el año de lanzamiento, la cantidad
+    de aplicaciones y el porcentaje de aplicaciones gratuitas.
+    """
+    
     # Formateamos el string de entrada para un correcto filtrado
     dev = dev.upper()
     
@@ -128,7 +134,7 @@ def developer(dev:str):
     return result_dict
 
 # Función 2
-@app.get("/userdata/{idUser}")
+@app.get("/userdata/{idUser}", name = "User Data")
 def userdata(idUser:str):
     # Formateamos el string de entrada a número.
     idUser = int(idUser)
@@ -161,7 +167,7 @@ def userdata(idUser:str):
     return result_dict
 
 # Función 3
-@app.get("/userforgenre/{genre}")
+@app.get("/userforgenre/{genre}", name = "User for genre")
 def userForGenre(genre:str):
     # Formateamos el string de entrada y lo capitalizamos.
     genre = genre.upper()
@@ -193,7 +199,7 @@ def userForGenre(genre:str):
     return result_dict
 
 # Función 4
-@app.get("/bestdeveloper/{year}")
+@app.get("/bestdeveloper/{year}", name = "Best Developer")
 def bestDeveloper(year:str):
     
     if year not in dfBestDevs["ReleaseYear"].unique():
@@ -224,7 +230,7 @@ def bestDeveloper(year:str):
 
 
 # Función 5
-@app.get("/developerReviewAnalysis/{developer}")
+@app.get("/developerReviewAnalysis/{developer}", name = "Developer Review Analysis")
 def developerReviewsAnalysis(developer:str):
 
     developer = developer.upper()
@@ -247,7 +253,7 @@ def developerReviewsAnalysis(developer:str):
 
 # Función 6
 
-@app.get("/recomendacionJuego/{idApp}")
+@app.get("/recomendacionJuego/{idApp}", name = "Recomendacion Juego")
 def recomendacionJuego(idApp:str):
     # Primero convertimos el input en un valor numérico para facilitar la búsqueda.
     idApp = int(idApp)
