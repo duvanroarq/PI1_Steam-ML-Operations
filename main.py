@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 import pandas as pd
+from sklearn.metrics.pairwise import cosine_similarity
 
 # Instancia de la aplicación
 
@@ -14,6 +15,8 @@ dfUserData = pd.read_parquet("datafunc/userdata.parquet")
 dfUxG = pd.read_parquet("datafunc/userbygenre.parquet")
 dfBestDevs = pd.read_parquet("datafunc/bestDevs.parquet")
 dfRevFeels = pd.read_parquet("datafunc/devRevAna.parquet")
+dfApps = pd.read_parquet("datafunc/apps.parquet")
+dfGenres = pd.read_parquet("dataout/out_genres_games.parquet")
 
 # CONFIGURACIÓN API
 
@@ -64,10 +67,10 @@ async def home():
         </header>
         <div class="container">
             <div class="intro">
-                <h2>Bienvenido a nuestra plataforma;</h2>
+                <h2>Bienvenido a nuestra plataforma</h2>
                 <p>¡Hola! Esta API proporciona un sistema de consulta de aplicaciones(especialmente videojuegos)
                 que se encuentran en la plataforma STEAM. Puedes consultar por idUsuario, genero y mucho más.
-                Puedes consultar toda la documentación oficial en el siguiente enlace:
+                También puedes consultar toda la documentación oficial en el siguiente enlace:
                 <a href="https://github.com/duvanroarq/PI1_Steam-ML-Operations">Repositorio GitHub</a></p>
                 <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs , o por el contrario
                 dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">DOCS</a> </p>
@@ -241,3 +244,33 @@ def developerReviewsAnalysis(developer:str):
     result_dict = dummy.sum().to_dict()
 
     return result_dict
+
+# Función 6
+
+@app.get("/recomendacionJuego/{idApp}")
+def recomendacionJuego(idApp:str):
+    # Primero convertimos el input en un valor numérico para facilitar la búsqueda.
+    idApp = int(idApp)
+    
+    # Si el valor no se encuentra retornar que no se encontró.
+    if idApp not in dfApps["IdApp"]:
+        return "No se encuentra el id ingresado dentro de la base de datos."
+    
+    # Ahora vamos a buscar el indice que corresponde al IdApp
+    indSearch = dfApps.index[dfApps["IdApp"] == idApp][0]
+    
+    # Ahora vamos a crear el dataframe
+    dfSimilitudes = pd.DataFrame(cosine_similarity(dfGenres.iloc[:,1:]))
+    
+    # Ahora vamos a identificar la fila en el dataframe de similitudes usando el indice
+    filaApp = dfSimilitudes.iloc[indSearch]
+    
+    # Ahora eliminamos el valor de la fila que corresponde al indice que estabamos buscando, ya que no necesitamos obtener la similitud de la misma app.
+    filaApp.drop(index=indSearch, inplace=True)
+    
+    # Ordenamos los valores de esta fila en orden descendente para tomar los índices de los 5 elementos más similares.
+    result = filaApp.sort_values(ascending=False).index[1:6]
+    
+    appsMasSim = dfApps.loc[result, 'Name']
+    
+    return appsMasSim
