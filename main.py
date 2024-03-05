@@ -60,15 +60,26 @@ async def home():
     </head>
     <body>
         <header>
-            <h1>API de Ejemplo</h1>
+            <h1>STEAM API </h1>
         </header>
         <div class="container">
             <div class="intro">
-                <h2>Bienvenido a la API de stea;</h2>
-                <p>Esta API proporciona un sistema de consulta de aplicaciones (especialmente videojuegos)
-                que se encuentran en la plataforma STEAM.</p>
-                <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs o por el contrario
-                dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">Enlace a la API</a> </p>
+                <h2>Bienvenido a nuestra plataforma;</h2>
+                <p>¡Hola! Esta API proporciona un sistema de consulta de aplicaciones(especialmente videojuegos)
+                que se encuentran en la plataforma STEAM. Puedes consultar por idUsuario, genero y mucho más.
+                Puedes consultar toda la documentación oficial en el siguiente enlace:
+                <a href="https://github.com/duvanroarq/PI1_Steam-ML-Operations">Repositorio GitHub</a></p>
+                <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs , o por el contrario
+                dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">DOCS</a> </p>
+            </div>
+            <div class="fin">
+                <h2>Bienvenido a nuestra plataforma;</h2>
+                <p>¡Hola! Esta API proporciona un sistema de consulta de aplicaciones(especialmente videojuegos)
+                que se encuentran en la plataforma STEAM. Puedes consultar por idUsuario, genero y mucho más.
+                Puedes consultar toda la documentación oficial en el siguiente enlace:
+                <a href="https://github.com/duvanroarq/PI1_Steam-ML-Operations">Repositorio GitHub</a></p>
+                <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs , o por el contrario
+                dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">DOCS</a> </p>
             </div>
         </div>
     </body>
