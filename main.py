@@ -19,12 +19,13 @@ dfRevFeels = pd.read_parquet("datafunc/devRevAna.parquet")
 
 @app.get("/", response_class=HTMLResponse)
 async def home():
-    home= """<!DOCTYPE html>
+    home = """
+    <!DOCTYPE html>
     <html lang="es">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Documentación de la API</title>
+        <title>Inicio | API STEAM</title>
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -48,50 +49,31 @@ async def home():
                 margin: 20px auto;
                 padding: 0 20px;
             }
-            .endpoint {
+            .intro {
+                margin-top: 20px;
+                padding: 20px;
                 background-color: #fff;
                 border: 1px solid #ddd;
                 border-radius: 5px;
-                margin-bottom: 20px;
-                padding: 20px;
-            }
-            .endpoint h2 {
-                margin-top: 0;
-                font-size: 24px;
-            }
-            .endpoint p {
-                margin-bottom: 10px;
-            }
-            .endpoint code {
-                background-color: #f8f8f8;
-                padding: 2px 5px;
-                border-radius: 3px;
             }
         </style>
     </head>
     <body>
         <header>
-            <h1>Documentación de la API</h1>
+            <h1>API de Ejemplo</h1>
         </header>
         <div class="container">
-            <div class="endpoint">
-                <h2>Endpoint 1</h2>
-                <p>Descripción breve del endpoint 1.</p>
-                <pre><code>GET /endpoint1</code></pre>
-                <p>Parámetros:</p>
-                <ul>
-                    <li><code>param1</code>: Descripción del parámetro 1.</li>
-                    <li><code>param2</code>: Descripción del parámetro 2.</li>
-                </ul>
-                <p>Respuesta:</p>
-                <pre><code>{
-        "respuesta": "contenido de la respuesta"
-    }</code></pre>
+            <div class="intro">
+                <h2>Bienvenido a la API de stea;</h2>
+                <p>Esta API proporciona un sistema de consulta de aplicaciones (especialmente videojuegos)
+                que se encuentran en la plataforma STEAM.</p>
+                <p>Para comenzar a usar la API dirigete a la barra de nagación y escribe /docs o por el contrario
+                dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">Enlace a la API</a> </p>
             </div>
-            <!-- Agregar más endpoints según sea necesario -->
         </div>
     </body>
-    </html>"""
+    </html>
+    """
     return home
 
 
