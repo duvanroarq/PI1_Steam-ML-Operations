@@ -15,6 +15,85 @@ dfUxG = pd.read_parquet("datafunc/userbygenre.parquet")
 dfBestDevs = pd.read_parquet("datafunc/bestDevs.parquet")
 dfRevFeels = pd.read_parquet("datafunc/devRevAna.parquet")
 
+# CONFIGURACIÓN API
+
+@app.get("/", response_class=HTMLResponse)
+async def home():
+    home= """<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Documentación de la API</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+            }
+            header {
+                background-color: #007bff;
+                color: #fff;
+                padding: 20px;
+                text-align: center;
+            }
+            h1 {
+                margin: 0;
+                font-size: 36px;
+            }
+            .container {
+                max-width: 800px;
+                margin: 20px auto;
+                padding: 0 20px;
+            }
+            .endpoint {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin-bottom: 20px;
+                padding: 20px;
+            }
+            .endpoint h2 {
+                margin-top: 0;
+                font-size: 24px;
+            }
+            .endpoint p {
+                margin-bottom: 10px;
+            }
+            .endpoint code {
+                background-color: #f8f8f8;
+                padding: 2px 5px;
+                border-radius: 3px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Documentación de la API</h1>
+        </header>
+        <div class="container">
+            <div class="endpoint">
+                <h2>Endpoint 1</h2>
+                <p>Descripción breve del endpoint 1.</p>
+                <pre><code>GET /endpoint1</code></pre>
+                <p>Parámetros:</p>
+                <ul>
+                    <li><code>param1</code>: Descripción del parámetro 1.</li>
+                    <li><code>param2</code>: Descripción del parámetro 2.</li>
+                </ul>
+                <p>Respuesta:</p>
+                <pre><code>{
+        "respuesta": "contenido de la respuesta"
+    }</code></pre>
+            </div>
+            <!-- Agregar más endpoints según sea necesario -->
+        </div>
+    </body>
+    </html>"""
+    return home
+
 
 # Función developer
 @app.get("/developer/{dev}")

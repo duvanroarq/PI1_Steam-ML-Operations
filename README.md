@@ -138,6 +138,8 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
 
     Para ingresar a la api desde la web, por favor de clic en el siguiente enlace y no olvide al final de la dirección web escribir: /docs para ingresar a la API.
 
+    [API STEAM](https://pi1steam-ml-operations-production.up.railway.app/docs)
+
 - ### Video tutorial
 
     Como una forma de explicar el funcionamiento de la API, se ha creado un vídeo en Youtube desde el cual puede ver de manera detallada el funcionamiento de la API.
