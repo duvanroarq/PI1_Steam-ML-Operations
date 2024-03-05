@@ -4,6 +4,8 @@
 
 En el presente repositorio se desarrolla un **Producto Mínimo Viable** para la gestión y manejo de datos de una plataforma de videojuegos y aplicaciones en línea, conocida popularmente como **Steam**.
 
+![Int](src/R1.jpg)
+
 ## Introducción
 
 La compañía Steam le solicita al equipo de trabajo de Data crear un producto básico que le permita probar un sistema de consulta en línea, a tráves de una API. Para esto la gerencia de la compañía les ha entregado 3 datasets que contienen información histórica de aplicaciones en línea, para que el equipo transforme estos datos y los convierta en información para la toma de decisiones de la compañía.
@@ -27,6 +29,8 @@ La compañía Steam le solicita al equipo de trabajo de Data crear un producto b
 - Crear un video al equipo de trabajo para entender el manejo de la API en línea.
 - Documentar cada una de las decisiones tomadas durante el ejercicio del producto.
 
+![r2](src/r2.jpg)
+
 ## Descripción de la fuente de los datos
 
 La genrencia de tecnología ha entregado al equipo de Científicos de datos 3 archivos de datos JSON comprimidos, que el equipo debe extraer eficientemente y tomar decisiones con respecto a estos.
@@ -42,6 +46,8 @@ La genrencia de tecnología ha entregado al equipo de Científicos de datos 3 ar
 - ### users_items.json.gz
 
     Este [dataset](datasets/users_items.json.gz) contiene toda la información asociada a las actividades de los usuarios en la plataforma, tiempo de actividad por cada aplciación que han usado y un conteo de las aplicaciones adquiridas (Free o pago), este archivo contiene datos anidados por lo que se debe ser cuidadoso al momento de transformarlos.
+
+![r3](src/r3.jpg)
 
 ## El proceso
 
@@ -144,6 +150,8 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
 - ### Video tutorial
 
     Como una forma de explicar el funcionamiento de la API, se ha creado un [vídeo]() en Youtube desde el cual puede ver de manera detallada el funcionamiento de la API.
+
+![r4](src/r4.jpg)
 
 - ## Conclusiones
 
