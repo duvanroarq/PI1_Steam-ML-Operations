@@ -76,11 +76,12 @@ async def home():
                 dirigete al siguiente enlace <a href="https://mlopssteam.up.railway.app/docs">DOCS</a> </p>
                 
                 <p>Con el fin de hacer disponible las funcionalidades de la API desde cualquier dispositivo,
-                se creó una API usando un servidor de Railway.Esta plataforma permite crear APIs disrectamente 
+                se creó una API usando un servidor de Railway.Esta plataforma permite crear APIs directamente 
                 desde el repositorio de GitHub y se sincroniza al instante cada vez que existe un nuevo commit en el repositorio.</p>
+                
+                <p> Desarrollado por Duván Robayo, más sobre mi trabajo en <a href="https://github.com/duvanroarq">GitHub</a> <p>
             </div>
         </div>
-        <p> Desarrollado por Duván Robayo, más sobre mi trabajo en <a href="https://github.com/duvanroarq">GitHub</a>
     </body>
     </html>
     """
@@ -101,6 +102,8 @@ def developer(dev:str):
     de aplicaciones y el porcentaje de aplicaciones gratuitas.
     
     EJEMPLOS: GearboxSoftware, Blue Byte
+    
+    Nota: No olvide dar clic en Try it out para habilitar el campo de escritura.
     """
     
     # Formateamos el string de entrada para un correcto filtrado
@@ -150,6 +153,8 @@ def userdata(idUser:str):
     - Un diccionario con el id del usuario, el dinero gastado, el porcentaje de recomendación y la cantidad de items.
     
     EJEMPLOS: 76561197960269200, 76561198329548331
+    
+    Nota: No olvide dar clic en Try it out para habilitar el campo de escritura.
     """
     # Formateamos el string de entrada a número.
     idUser = int(idUser)
@@ -195,6 +200,8 @@ def userForGenre(genre:str):
     - Un diccionario con el id del usuario y el número de horas jugadas por año.
     
     EJEMPLOS: Casual, Action
+    
+    Nota: No olvide dar clic en Try it out para habilitar el campo de escritura.
     """
     # Formateamos el string de entrada y lo capitalizamos.
     genre = genre.upper()
@@ -238,6 +245,8 @@ def bestDeveloper(year:str):
     - Un diccionario con el puesto ocupado y el nombre del desarrollador.
     
     EJEMPLOS: 2013, 2017
+    
+    Nota: No olvide dar clic en Try it out para habilitar el campo de escritura.
     """
     
     if year not in dfBestDevs["ReleaseYear"].unique():
@@ -281,6 +290,8 @@ def developerReviewsAnalysis(developer:str):
     - Un diccionario con la cantidad de reseñas negativas y positivas.
     
     EJEMPLOS: Valve, Blue Byte
+    
+    Nota: No olvide dar clic en Try it out para habilitar el campo de escritura.
     """
 
     developer = developer.upper()
@@ -319,6 +330,8 @@ def recomendacionJuego(idApp:str):
     - Un diccionario con la posición de la app y su nombre.
     
     EJEMPLOS: 2028850, 20
+    
+    Nota: No olvide dar clic en Try it out para habilitar el campo de escritura.
     """
     # Primero convertimos el input en un valor numérico para facilitar la búsqueda.
     idApp = int(idApp)

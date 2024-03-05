@@ -1,3 +1,5 @@
+![README](src/port.jpg)
+
 # Proyecto Individual 1 Machine Learning Operations
 
 En el presente repositorio se desarrolla un **Producto Mínimo Viable** para la gestión y manejo de datos de una plataforma de videojuegos y aplicaciones en línea, conocida popularmente como **Steam**.
@@ -11,6 +13,7 @@ La compañía Steam le solicita al equipo de trabajo de Data crear un producto b
 - Extraer, transformar y cargar los datos en un dataset.
 - Realizar un análisis exploratorio de los datos, para observar patrones y tendencias estadísticas.
 - Crear una API que facilite las consultas sin necesidad de que el usuario escriba código.
+- Crear un sistema de recomendación.
 
 
 ### Funciones desde el rol
@@ -30,15 +33,15 @@ La genrencia de tecnología ha entregado al equipo de Científicos de datos 3 ar
 
 - ### steam_games.json.gz
 
-    Este dataset contiene toda la información asociada a las aplicaciones que se encuentran registradas en la plataforma de Steam, el equipo debe decidir que datos son relevantes para el desarrollo de la API y el sistema de recomendación.
+    Este [dataset](datasets/steam_games.json.gz) contiene toda la información asociada a las aplicaciones que se encuentran registradas en la plataforma de Steam, el equipo debe decidir que datos son relevantes para el desarrollo de la API y el sistema de recomendación.
 
 - ### user_reviews.json.gz
 
-    Este dataset contiene toda la información asociada a las reseñas que los usuarios han creado en base al uso de las aplicaciones, este archivo contiene datos anidados por lo que se debe ser cuidadoso al momento de transformarlos.
+    Este [dataset](datasets/user_reviews.json.gz) contiene toda la información asociada a las reseñas que los usuarios han creado en base al uso de las aplicaciones, este archivo contiene datos anidados por lo que se debe ser cuidadoso al momento de transformarlos.
 
 - ### users_items.json.gz
 
-    Este dataset contiene toda la información asociada a las actividades de los usuarios en la plataforma, tiempo de actividad por cada aplciación que han usado y un conteo de las aplicaciones adquiridas (Free o pago), este archivo contiene datos anidados por lo que se debe ser cuidadoso al momento de transformarlos.
+    Este [dataset](datasets/users_items.json.gz) contiene toda la información asociada a las actividades de los usuarios en la plataforma, tiempo de actividad por cada aplciación que han usado y un conteo de las aplicaciones adquiridas (Free o pago), este archivo contiene datos anidados por lo que se debe ser cuidadoso al momento de transformarlos.
 
 ## El proceso
 
@@ -62,11 +65,11 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
 
     Con el fin de realizar un trabajo organizado y debidamente documentado, el ETL se dividió en los 3 conjuntos de datos entregados.
 
-    - **01_ETL_Steam_games**: Proceso ETL para el dataset que contiene información asociada a los videojuegos. Este archivo tiene tres outputs: **out_games.parquet**, **out_genres_games.parquet** y **out_metadata_games.parquet**.
+    - **01_ETL_Steam_games**: Proceso [ETL](01_ETL_Steam_games.ipynb) para el dataset que contiene información asociada a los videojuegos. Este archivo tiene tres outputs: **out_games.parquet**, **out_genres_games.parquet** y **out_metadata_games.parquet**.
 
-    - **02_ETL_Users_items**: Proceso ETL para el dataset que contiene información asociada a las actividades de los usuarios. Este archivo tiene dos outputs: **out_users_items.parquet** y **out_users.parquet**.
+    - **02_ETL_Users_items**: Proceso [ETL](02_ETL_Users_items.ipynb) para el dataset que contiene información asociada a las actividades de los usuarios. Este archivo tiene dos outputs: **out_users_items.parquet** y **out_users.parquet**.
 
-    - **03_ETL_Users_reviews**: Proceso ETL para el dataset que contiene información asociada las reseñas de las aplicaciones. Este archivo tiene dos outputs: **out_users_reviews.parquet** y **out_feelings.parquet**, este último es el resultado de un análisis de sentimientos 
+    - **03_ETL_Users_reviews**: Proceso [ETL](03_ETL_Users_reviews.ipynb) para el dataset que contiene información asociada las reseñas de las aplicaciones. Este archivo tiene dos outputs: **out_users_reviews.parquet** y **out_feelings.parquet**, este último es el resultado de un análisis de sentimientos 
 
     Los datasets resultantes se guardaron en la carpeta dataout en formato parquet, un formato de archivos que utiliza menos espacio en memoria y es fácil de extraer desde **Pandas**.
 
@@ -74,13 +77,13 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
 
     Es importante mencionar que en los archivos ETL se realizó un EDA inicial, ya que el equipo del proyecto considera estos dos procesos como sincrónicos. En el EDA inicial se exploran las variables y sus tipos, las relaciones de las variables y un conteo de valores nulos y duplicados.
     
-    Sin embargo, en este cuadernillo se realiza un EDA usando librerías como Matplotlib y Seaborn para visualizar los datos gráficamente y entender mejor los patrones.
+    Sin embargo, en este [cuadernillo](04_EDA.ipynb) se realiza un EDA usando librerías como Matplotlib y Seaborn para visualizar los datos gráficamente y entender mejor los patrones.
 
     De este proceso no surgen datasets, solo el cuadernillo con los hallazgos de este proceso.
 
 - ### Creación de Funciones
 
-    Con el fin de documentar el proceso de creación de cada una de las funciones que ejecutarán las consultas de la API, se crea este cuadernillo.
+    Con el fin de documentar el proceso de creación de cada una de las funciones que ejecutarán las consultas de la API, se crea este [documento](05_Funciones.ipynb).
 
     En este cuadernillo se importan los datasets de la carpeta dataout para ser procesados y mejorar su rendimiento en función de las necesidades de las consultas.
 
@@ -100,16 +103,13 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
 
 - ### Modelo Machine Learning (Sistema de Recomendación)
 
-    Con el fin de documentar el proceso de creación de modelo de aprendizaje basado en recomendaciones se crea un cuadernillo en 06_Modelo que contiene los pasos para la creación de este modelo.
+    Con el fin de documentar el proceso de creación de modelo de aprendizaje basado en recomendaciones se crea este [cuadernillo](06_Modelo_ML.ipynb) que contiene los pasos para la creación de este modelo.
 
-    Se crea este modelo en base a la similitud del coseno, se realiza una revisión de referencias a este tema, como el siguiente video:
-    https://www.youtube.com/watch?v=NlNH4AmIF5o&pp=ygUUc2ltaWxpdHVkIGRlbCBjb3Nlbm8%3D
+    Se crea este modelo en base a la similitud del coseno, se realiza una revisión de referencias a este tema, como el siguiente [video](https://www.youtube.com/watch?v=NlNH4AmIF5o&pp=ygUUc2ltaWxpdHVkIGRlbCBjb3Nlbm8%3D):
 
     Se utiliza el dataframe Genres y Games que contienen información relevante para este proceso.
 
-    El dataset resultante : similitudes es una matriz de similitud que contiene tanto en columnas como en filas cada uno de los IdAPP únicos y establece un porcentaje de similitud con cada una de las apps.
-
-    Este dataset resultante es costoso en almacenamiento, por lo tanto no se recomienda descargarlo si no se posee con los recursos necesarios.
+    El dataset resultante similitudes es una matriz de similitud que contiene tanto en columnas como en filas cada uno de los IdAPP únicos y establece un porcentaje de similitud con cada una de las apps.
 
 - ### Creación API localmente
 
@@ -138,11 +138,12 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
 
     Para ingresar a la api desde la web, por favor de clic en el siguiente enlace y no olvide al final de la dirección web escribir: /docs para ingresar a la API.
 
-    [API STEAM](https://pi1steam-ml-operations-production.up.railway.app/docs)
+    [API STEAM HOME](https://mlopssteam.up.railway.app/)
+    [API STEAM DIRECTO](https://mlopssteam.up.railway.app/docs)
 
 - ### Video tutorial
 
-    Como una forma de explicar el funcionamiento de la API, se ha creado un vídeo en Youtube desde el cual puede ver de manera detallada el funcionamiento de la API.
+    Como una forma de explicar el funcionamiento de la API, se ha creado un [vídeo]() en Youtube desde el cual puede ver de manera detallada el funcionamiento de la API.
 
 - ## Conclusiones
 
@@ -155,4 +156,5 @@ A continuación se hace una descripción y resumen de la metodología de trabajo
     Esto fue costoso en almacenamiento y rendimiento, haciendo múltiples pruebas para que la API en la nube funcionara. No se eliminó información que puede ser considerada irrelevante para este análisis, solo se dividió en otros datasets para que en algún futuro sea usada.
 
 - ## Autor
-    Duván Robayo Roa
+    [Duván Robayo Roa](https://github.com/duvanroarq/)
+    [LinkedIn](https://www.linkedin.com/in/duvanroarq/)
