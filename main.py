@@ -35,7 +35,7 @@ async def home():
                 margin: 0;
                 padding: 0;
                 background-color: #010c17;
-                color: #e3effa;
+                color: #041729;
             }
             header {
                 background-color: #2a017a;
@@ -80,6 +80,7 @@ async def home():
                 desde el repositorio de GitHub y se sincroniza al instante cada vez que existe un nuevo commit en el repositorio.</p>
             </div>
         </div>
+        <p> Desarrollado por Duván Robayo, más sobre mi trabajo en <a href="https://github.com/duvanroarq">GitHub</a>
     </body>
     </html>
     """
@@ -98,6 +99,8 @@ def developer(dev:str):
     Return:
     - list: Una lista de diccionarios que contienen información sobre el año de lanzamiento, la cantidad
     de aplicaciones y el porcentaje de aplicaciones gratuitas.
+    
+    EJEMPLOS: GearboxSoftware, Blue Byte
     """
     
     # Formateamos el string de entrada para un correcto filtrado
@@ -136,6 +139,18 @@ def developer(dev:str):
 # Función 2
 @app.get("/userdata/{idUser}", name = "User Data")
 def userdata(idUser:str):
+    """
+    Esta función permite filtrar por el id de usuario específico y mostrarle la cantidad de dinero gastado,
+    el porcentaje de recomedación y la cantidad de items que adquirió.
+
+    Parámetros:
+    - idUser = Cadena string con el número de id del usuario que se quiere consultar.
+
+    Return:
+    - Un diccionario con el id del usuario, el dinero gastado, el porcentaje de recomendación y la cantidad de items.
+    
+    EJEMPLOS: 76561197960269200, 76561198329548331
+    """
     # Formateamos el string de entrada a número.
     idUser = int(idUser)
     
@@ -169,6 +184,18 @@ def userdata(idUser:str):
 # Función 3
 @app.get("/userforgenre/{genre}", name = "User for genre")
 def userForGenre(genre:str):
+    """
+    Esta función permite filtrar por el genero o clasificación de las apps y mostrarle el usuario con mayor número de
+    horas de juego y la lista de horas acumuladas por año de lanzamiento.
+
+    Parámetros:
+    - genre = Cadena string con el nombre del género.
+
+    Return:
+    - Un diccionario con el id del usuario y el número de horas jugadas por año.
+    
+    EJEMPLOS: Casual, Action
+    """
     # Formateamos el string de entrada y lo capitalizamos.
     genre = genre.upper()
     
@@ -201,6 +228,17 @@ def userForGenre(genre:str):
 # Función 4
 @app.get("/bestdeveloper/{year}", name = "Best Developer")
 def bestDeveloper(year:str):
+    """
+    Esta función le permite filtrar por año de lanzamiento y mostrarle el top 3 de juegos más recomendados para ese año.
+
+    Parámetros:
+    - year = Cadena string con el número del año.
+    
+    Return:
+    - Un diccionario con el puesto ocupado y el nombre del desarrollador.
+    
+    EJEMPLOS: 2013, 2017
+    """
     
     if year not in dfBestDevs["ReleaseYear"].unique():
         return {"Error": "El año ingresado no está presente en la base de datos"}
@@ -232,6 +270,18 @@ def bestDeveloper(year:str):
 # Función 5
 @app.get("/developerReviewAnalysis/{developer}", name = "Developer Review Analysis")
 def developerReviewsAnalysis(developer:str):
+    """
+    Esta función le permite filtrar por un desarrollador específico y mostrarle la cantidad de reseñas categorizadas 
+    como positivas y como negativas.
+
+    Parámetros:
+    - developer = Cadena string con el nombre del desarrollador.
+
+    Return:
+    - Un diccionario con la cantidad de reseñas negativas y positivas.
+    
+    EJEMPLOS: Valve, Blue Byte
+    """
 
     developer = developer.upper()
     
@@ -255,11 +305,26 @@ def developerReviewsAnalysis(developer:str):
 
 @app.get("/recomendacionJuego/{idApp}", name = "Recomendacion Juego")
 def recomendacionJuego(idApp:str):
+
+    """
+    Esta función le permite filtrar por el id de la aplicación específica y mostrarle 5 apps recomendadas o similares
+    según el modelo de recomendación realizado en el modulo Machine Learning.
+    
+    NOTA: Esta función demora algunos segundos mientras genera la recomendación.
+
+    Parámetros:
+    - idApp = Cadena string con el número de id de la app que desea buscar.
+
+    Return:
+    - Un diccionario con la posición de la app y su nombre.
+    
+    EJEMPLOS: 2028850, 20
+    """
     # Primero convertimos el input en un valor numérico para facilitar la búsqueda.
     idApp = int(idApp)
     
     # Si el valor no se encuentra retornar que no se encontró.
-    if idApp not in dfApps["IdApp"]:
+    if idApp not in dfApps["IdApp"].values:
         return "No se encuentra el id ingresado dentro de la base de datos."
     
     # Ahora vamos a buscar el indice que corresponde al IdApp
